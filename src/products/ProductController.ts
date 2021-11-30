@@ -39,8 +39,10 @@ export class ProductController {
     }
 
     @Get('')
-    async getProducts() : Promise<ProductResponse[]>
-    {
+    @ApiOperation({ summary: 'Get Products' })
+    @ApiResponse({ status: 500, description: 'Internal server Error' })
+    @ApiResponse({ status: 200, type: ProductResponse, isArray: true })
+    async getProducts(): Promise<ProductResponse[]> {
         return await this.productRepository.getProducts();
     }
 }
